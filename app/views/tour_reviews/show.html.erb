@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tour_review.user_id %>
+</p>
+
+<p>
+  <strong>Tour:</strong>
+  <%= @tour_review.tour_id %>
+</p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @tour_review.review %>
+</p>
+
+<%= link_to 'Edit', edit_tour_review_path(@tour_review) %> |
+<%= link_to 'Back', tour_reviews_path %>

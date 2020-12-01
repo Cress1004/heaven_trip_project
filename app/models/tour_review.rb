@@ -1,0 +1,2 @@
+class TourReview < ApplicationRecord
+end
