@@ -19,8 +19,12 @@
         <td><%= tour.time %></td>
         <td><%= tour.description %></td>
         <td><%= link_to 'Show', tour %></td>
+          
          <% if user_signed_in? %>
-        <% if current_user.admin == true %>
+         <% if current_user.is_admin == false %>
+          <td><%= link_to 'Booking', new_booking_tour_path %></td>
+           <% end %>
+        <% if current_user.is_admin? %>
         <td><%= link_to 'Edit', edit_tour_path(tour) %></td>
         <td><%= link_to 'Destroy', tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -31,6 +35,8 @@
 </table>
 
 <br>
-
+<% if user_signed_in? %>
+<% if current_user.is_admin? %>
 <%= link_to 'New Tour', new_tour_path %>
-
+<% end %>
+<% end %>
