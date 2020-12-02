@@ -1,14 +1,31 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
+<strong>User:</strong>
   <%= @booking_tour.user_id %>
 </p>
 
 <p>
-  <strong>Tour:</strong>
+  <strong>ツアー：</strong>
   <%= @booking_tour.tour_id %>
 </p>
+
+<p>
+  <strong>人の数:</strong>
+  <%= @booking_tour.number_of_people %>
+</p>
+
+<p>
+  <strong>交通</strong>
+  <%= @booking_tour.vehicle %>
+</p>
+
+<!--need to edit after-->
+<p>
+  <strong> 合計 </strong>
+  <%= @booking_tour.total_cost %>
+</p>
+
 
 <%= link_to 'Edit', edit_booking_tour_path(@booking_tour) %> |
 <%= link_to 'Back', booking_tours_path %>

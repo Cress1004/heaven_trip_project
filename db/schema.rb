@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_115951) do
+ActiveRecord::Schema.define(version: 2020_12_02_113924) do
 
   create_table "booking_tours", force: :cascade do |t|
     t.integer "user_id"
     t.integer "tour_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "total_cost"
+    t.integer "number_of_people"
+    t.string "vehicle"
   end
 
   create_table "tour_reviews", force: :cascade do |t|

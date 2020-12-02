@@ -1,8 +1,8 @@
+
 <%= form_with(model: booking_tour, local: true) do |form| %>
   <% if booking_tour.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(booking_tour.errors.count, "error") %> prohibited this booking_tour from being saved:</h2>
-
       <ul>
         <% booking_tour.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -12,14 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <!--need change after that-->
+
+  <div class="field">
+    <%= form.hidden_field :tour_id, value: 1 %>
+  </div>
+
+  
+  <div class="field">
+    <%= form.label :人の数 %>
+    <%= form.number_field :number_of_people %>
   </div>
 
   <div class="field">
-    <%= form.label :tour_id %>
-    <%= form.number_field :tour_id %>
+  　<%= form.label :vehicle, "どうやって行きたいですか？" %><br/>
+  　<%= form.select :vehicle, options_for_select(["バスで","飛行機で","船で","電車で"]) %>
   </div>
+
 
   <div class="actions">
     <%= form.submit %>
