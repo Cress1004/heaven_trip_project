@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :booking_tours
   resources :tour_reviews
   get 'home_pages/home'
+  get 'users/show'
   devise_for :users
   resources :tours
   root to:'home_pages#home'
