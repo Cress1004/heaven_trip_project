@@ -45,6 +45,7 @@ class BookingToursController < ApplicationController
   # PATCH/PUT /booking_tours/1
   # PATCH/PUT /booking_tours/1.json
   def update
+        @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*3 
     respond_to do |format|
       if @booking_tour.update(booking_tour_params)
         format.html { redirect_to @booking_tour, notice: 'Booking tour was successfully updated.' }
