@@ -12,21 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
+    <%= form.label :user_id, 'ユーザー' %>
     <%= form.number_field :user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :tour_id %>
+    <%= form.label :tour_id, 'ツアー' %>
     <%= form.number_field :tour_id %>
   </div>
 
   <div class="field">
-    <%= form.label :review %>
+    <%= form.label :review, 'レビュー' %>
     <%= form.text_area :review %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit '参加する'  %>
   </div>
 <% end %>

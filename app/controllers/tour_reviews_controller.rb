@@ -28,7 +28,7 @@ class TourReviewsController < ApplicationController
 
     respond_to do |format|
       if @tour_review.save
-        format.html { redirect_to @tour_review, notice: 'Tour review was successfully created.' }
+        format.html { redirect_to @tour_review, notice: 'ツアーレビューが正常に作成されました。' }
         format.json { render :show, status: :created, location: @tour_review }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TourReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @tour_review.update(tour_review_params)
-        format.html { redirect_to @tour_review, notice: 'Tour review was successfully updated.' }
+        format.html { redirect_to @tour_review, notice: 'ツアーレビューが正常に更新されました。' }
         format.json { render :show, status: :ok, location: @tour_review }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class TourReviewsController < ApplicationController
   def destroy
     @tour_review.destroy
     respond_to do |format|
-      format.html { redirect_to tour_reviews_url, notice: 'Tour review was successfully destroyed.' }
+      format.html { redirect_to tour_reviews_url, notice: 'ツアーレビューは正常に削除されました。' }
       format.json { head :no_content }
     end
   end
