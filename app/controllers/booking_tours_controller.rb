@@ -30,7 +30,7 @@ class BookingToursController < ApplicationController
     @booking_tour = BookingTour.new(booking_tour_params)
     # need change after
 
-    @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*3 
+    @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*@tour.price.to_i
     respond_to do |format|
       if @booking_tour.save
         format.html { redirect_to @booking_tour, notice: 'Booking tour was successfully created.' }
@@ -45,7 +45,7 @@ class BookingToursController < ApplicationController
   # PATCH/PUT /booking_tours/1
   # PATCH/PUT /booking_tours/1.json
   def update
-        @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*3 
+        @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*@tour.price.to_i
     respond_to do |format|
       if @booking_tour.update(booking_tour_params)
         format.html { redirect_to @booking_tour, notice: 'Booking tour was successfully updated.' }
@@ -71,10 +71,13 @@ class BookingToursController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_booking_tour
       @booking_tour = BookingTour.find(params[:id])
+      @tour = Tour.find(@booking_tour.tour_id)
+      @user = User.find(@booking_tour.user_id)
     end
 
     # Only allow a list of trusted parameters through.
     def booking_tour_params
       params.require(:booking_tour).permit(:user_id, :tour_id, :number_of_people, :vehicle)
     end
+  
 end
