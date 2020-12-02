@@ -1,4 +1,9 @@
-<h2>Log in</h2>
+<div class="section__container">
+      <h1 class="homepage__hero">Welcome to heaven trip</h1>
+    <p class="homepage__description">You want go to heaven when you die?</p>
+    <p class="homepage__subscription">This is for you! </p>
+  <div class="authen__container">
+<h2 style="margin-bottom: 10px; text-align: center; display: block">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -24,3 +29,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>
