@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+
+<%= image_tag @tour.image, style:"width: 650px; height: 400px"%>
 <p>
   <strong>Title:</strong>
   <%= @tour.title %>
@@ -13,6 +15,11 @@
 <p>
   <strong>Description:</strong>
   <%= @tour.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @tour.price %> VND
 </p>
 
 <%= link_to 'Edit', edit_tour_path(@tour) %> |
