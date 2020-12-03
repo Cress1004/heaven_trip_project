@@ -1,6 +1,7 @@
 class BookingToursController < ApplicationController
   before_action :set_booking_tour, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_my_booking, only: [:index]
+  before_action :set_book_tour, only: [:book_tour]
   # GET /booking_tours
   # GET /booking_tours.json
   def index
@@ -15,9 +16,11 @@ class BookingToursController < ApplicationController
   # GET /booking_tours/new
   def new
     @booking_tour = BookingTour.new
-    # if !current_user
-    #   format.html { redirect_to url, notice: 'まず、サインインしてください。' }
-    # end
+  end
+  
+  def book_tour
+    @booking_tour = BookingTour.new
+    render 'book_tour'
   end
 
   # GET /booking_tours/1/edit
@@ -29,8 +32,9 @@ class BookingToursController < ApplicationController
   def create
     @booking_tour = BookingTour.new(booking_tour_params)
     # need change after
-
-    @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*3 
+    @tour = Tour.find(@booking_tour.tour_id)
+    @user = User.find(@booking_tour.user_id)
+    @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*@tour.price.to_i
     respond_to do |format|
       if @booking_tour.save
         format.html { redirect_to @booking_tour, notice: 'Booking tour was successfully created.' }
@@ -45,8 +49,8 @@ class BookingToursController < ApplicationController
   # PATCH/PUT /booking_tours/1
   # PATCH/PUT /booking_tours/1.json
   def update
-        @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*3 
-    respond_to do |format|
+        @booking_tour.total_cost = @booking_tour.number_of_people.to_i*@tour.price.to_i
+      respond_to do |format|
       if @booking_tour.update(booking_tour_params)
         format.html { redirect_to @booking_tour, notice: 'Booking tour was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking_tour }
@@ -71,10 +75,22 @@ class BookingToursController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_booking_tour
       @booking_tour = BookingTour.find(params[:id])
+      # @my_bookings = BookingTour.find(:all, conditions => {:user_id => current_user.id}) 
+      @tour = Tour.find(@booking_tour.tour_id)
+      @user = User.find(@booking_tour.user_id)
+    end
+
+    def set_my_booking
+        @my_bookings = current_user.booking_tour
+    end
+
+    def set_book_tour
+      @tour = Tour.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def booking_tour_params
       params.require(:booking_tour).permit(:user_id, :tour_id, :number_of_people, :vehicle)
     end
+  
 end
