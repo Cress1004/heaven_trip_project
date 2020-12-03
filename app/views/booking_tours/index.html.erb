@@ -39,25 +39,31 @@
   <% elsif %>
   <h1><%= current_user.name %>'s Booking</h1>
   <%if !@my_bookings %>
+      <p>You have never booking before. <%= link_to 'Booking now!', new_booking_tour_path%> </p>
+    <% elsif %>
 <table>
   <thead>
     <tr>
       <th>Tour</th>
+      <th>Tour Name</th>
+      <th>Total Cost</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @my_bookings.each do |booking_tour| %>
+    <% @tour = Tour.find(booking_tour.tour_id) %>
       <tr>
         <td><%= booking_tour.tour_id %></td>
+        <td><%= @tour.title %></td>
+        <td><%=booking_tour.total_cost%></td>
         <td><%= link_to 'Show', booking_tour %></td>
         <td><%= link_to 'Edit', edit_booking_tour_path(booking_tour) %></td>
-        <td><%= link_to 'Destroy', booking_tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Unbooking', booking_tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-    <% elsif %>
-    <p>You have never booking before. <%= link_to 'Booking now!', new_booking_tours_path%> </p>
+
   <% end %>
   </tbody>
 </table>

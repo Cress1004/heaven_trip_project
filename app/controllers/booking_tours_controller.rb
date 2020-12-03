@@ -1,5 +1,6 @@
 class BookingToursController < ApplicationController
   before_action :set_booking_tour, only: [:show, :edit, :update, :destroy]
+  before_action :set_my_booking, only: [:index]
 
   # GET /booking_tours
   # GET /booking_tours.json
@@ -45,7 +46,7 @@ class BookingToursController < ApplicationController
   # PATCH/PUT /booking_tours/1.json
   def update
         @booking_tour.total_cost = @booking_tour.number_of_people.to_i*@tour.price.to_i
-    respond_to do |format|
+      respond_to do |format|
       if @booking_tour.update(booking_tour_params)
         format.html { redirect_to @booking_tour, notice: 'Booking tour was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking_tour }
@@ -71,11 +72,12 @@ class BookingToursController < ApplicationController
     def set_booking_tour
       @booking_tour = BookingTour.find(params[:id])
       # @my_bookings = BookingTour.find(:all, conditions => {:user_id => current_user.id}) 
-      # @my_bookings = BookingTour.where(user_id: current_user.id).to_a
-          @tour = Tour.find(@booking_tour.tour_id)
-    @user = User.find(@booking_tour.user_id)
+      @tour = Tour.find(@booking_tour.tour_id)
+      @user = User.find(@booking_tour.user_id)
+    end
 
-
+    def set_my_booking
+        @my_bookings = current_user.booking_tour
     end
 
     # Only allow a list of trusted parameters through.
