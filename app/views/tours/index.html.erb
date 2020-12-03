@@ -13,7 +13,7 @@
       <th>Title</th>
       <th>Time</th>
       <th>Description</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -26,12 +26,11 @@
         <td><%= link_to 'Show', tour %></td>
           
          <% if user_signed_in? %>
-         <% if current_user.is_admin == false %>
-          <td><%= link_to 'Booking', new_booking_tour_path %></td>
-           <% end %>
         <% if current_user.is_admin? %>
         <td><%= link_to 'Edit', edit_tour_path(tour) %></td>
         <td><%= link_to 'Destroy', tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td><%= link_to 'Booking', book_tour_path_url(tour.id) %></td>
         <% end %>
          <% end %>
       </tr>
