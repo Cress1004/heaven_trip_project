@@ -1,7 +1,13 @@
+<div class="section__container">
+      <h1 class="homepage__hero">Welcome to heaven trip</h1>
+    <p class="homepage__description">You want go to heaven when you die?</p>
+    <p class="homepage__subscription">This is for you! </p>
+  <div class="authen__container">
 <p id="notice"><%= notice %></p>
 
 
-<%= image_tag @tour.image, style:"width: 650px; height: 400px"%>
+  <%= image_tag(@tour.image, style:"width: 650px; height: 400px") if @tour.image.attached? %>
+
 <p>
   <strong>Title:</strong>
   <%= @tour.title %>
@@ -24,3 +30,5 @@
 
 <%= link_to 'Edit', edit_tour_path(@tour) %> |
 <%= link_to 'Back', tours_path %>
+</div>
+</div>

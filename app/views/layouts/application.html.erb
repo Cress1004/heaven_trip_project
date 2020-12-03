@@ -10,14 +10,15 @@
   </head>
 
   <body>
-    <div class="nav-item">
-      <%= link_to "ホーム", "/" %>
+    <div class="nav-item" style="margin-bottom: 20px">
+      <%= link_to "ホーム", "/", class:"app__button"%>
       <% if user_signed_in? %>
-        <div> こんにちは <%= link_to current_user.name, users_show_path %></div>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        <div class="app__button"> こんにちは <strong><%= link_to current_user.name, users_show_path %></strong></div>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "app__button nav-link dropdown-item" %>
+        <div class="app__button"><%= link_to "ブッキングリスト",booking_tours_path %></div>
       <% else %>
-        <%= link_to "サインイン", new_user_session_path, class: "nav-link"%>
-        <%= link_to "ユーザ登録" , new_user_registration_path, method: :get%>
+        <%= link_to "サインイン", new_user_session_path, class: "nav-link app__button app__button--login"%>
+        <%= link_to "ユーザ登録" , new_user_registration_path, method: :get, class: "nav-link app__button app__button--signup" %>
       <% end %>
     </div>
     <hr>

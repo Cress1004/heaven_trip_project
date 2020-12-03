@@ -1,5 +1,10 @@
+<div class="section__container">
+      <h1 class="homepage__hero">Welcome to heaven trip</h1>
+    <p class="homepage__description">You want go to heaven when you die?</p>
+    <p class="homepage__subscription">This is for you! </p>
+  <div class="authen__container">
+<h1 style="margin-bottom: 10px; text-align: center; display: block">Booking Tours</h1>
 <p id="notice"><%= notice %></p>
-
 
   <% if current_user.is_admin %>
 <h1>All Booking</h1>
@@ -35,7 +40,7 @@
 <br>
 
 <%= link_to 'New Booking Tour', new_booking_tour_path %>
-  
+ 
   <% elsif %>
   <h1><%= current_user.name %>'s Booking</h1>
   <%if !@my_bookings %>
@@ -69,3 +74,6 @@
 </table>
 
 <% end %>
+</div>
+</div>
+
