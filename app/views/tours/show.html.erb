@@ -6,7 +6,8 @@
 <p id="notice"><%= notice %></p>
 
 
-<%= image_tag @tour.image, style:"width: 650px; height: 400px"%>
+  <%= image_tag(@tour.image, style:"width: 650px; height: 400px") if @tour.image.attached? %>
+
 <p>
   <strong>Title:</strong>
   <%= @tour.title %>
