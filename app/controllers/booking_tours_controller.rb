@@ -15,9 +15,7 @@ class BookingToursController < ApplicationController
   # GET /booking_tours/new
   def new
     @booking_tour = BookingTour.new
-    # if !current_user
-    #   format.html { redirect_to url, notice: 'まず、サインインしてください。' }
-    # end
+
   end
 
   # GET /booking_tours/1/edit
@@ -29,7 +27,8 @@ class BookingToursController < ApplicationController
   def create
     @booking_tour = BookingTour.new(booking_tour_params)
     # need change after
-
+    @tour = Tour.find(@booking_tour.tour_id)
+    @user = User.find(@booking_tour.user_id)
     @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*@tour.price.to_i
     respond_to do |format|
       if @booking_tour.save
@@ -45,7 +44,7 @@ class BookingToursController < ApplicationController
   # PATCH/PUT /booking_tours/1
   # PATCH/PUT /booking_tours/1.json
   def update
-        @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*@tour.price.to_i
+        @booking_tour.total_cost = @booking_tour.number_of_people.to_i*@tour.price.to_i
     respond_to do |format|
       if @booking_tour.update(booking_tour_params)
         format.html { redirect_to @booking_tour, notice: 'Booking tour was successfully updated.' }
@@ -71,8 +70,12 @@ class BookingToursController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_booking_tour
       @booking_tour = BookingTour.find(params[:id])
-      @tour = Tour.find(@booking_tour.tour_id)
-      @user = User.find(@booking_tour.user_id)
+      # @my_bookings = BookingTour.find(:all, conditions => {:user_id => current_user.id}) 
+      # @my_bookings = BookingTour.where(user_id: current_user.id).to_a
+          @tour = Tour.find(@booking_tour.tour_id)
+    @user = User.find(@booking_tour.user_id)
+
+
     end
 
     # Only allow a list of trusted parameters through.
