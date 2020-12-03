@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tour Reviews</h1>
+<div class="section__container">
+      <h1 class="homepage__hero">Welcome to heaven trip</h1>
+    <p class="homepage__description">You want go to heaven when you die?</p>
+    <p class="homepage__subscription">This is for you! </p>
+  <div class="authen__container">
+<h1 style="margin-bottom: 10px; text-align: center; display: block">ツアーレビュー</h1>
 
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Tour</th>
-      <th>Review</th>
+      <th>ユーザー</th>
+      <th>ツアー</th>
+      <th>レビュー</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,9 +23,9 @@
         <td><%= tour_review.user_id %></td>
         <td><%= tour_review.tour_id %></td>
         <td><%= tour_review.review %></td>
-        <td><%= link_to 'Show', tour_review %></td>
-        <td><%= link_to 'Edit', edit_tour_review_path(tour_review) %></td>
-        <td><%= link_to 'Destroy', tour_review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '表示', tour_review %></td>
+        <td><%= link_to '編集', edit_tour_review_path(tour_review) %></td>
+        <td><%= link_to '削除', tour_review, method: :delete, data: { confirm: '本気ですか？' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +33,6 @@
 
 <br>
 
-<%= link_to 'New Tour Review', new_tour_review_path %>
+<%= link_to 'ツアーレビューを作成する', new_tour_review_path %>
+</div>
+</div>

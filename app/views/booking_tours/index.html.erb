@@ -1,6 +1,10 @@
+<div class="section__container">
+      <h1 class="homepage__hero">Welcome to heaven trip</h1>
+    <p class="homepage__description">You want go to heaven when you die?</p>
+    <p class="homepage__subscription">This is for you! </p>
+  <div class="authen__container">
+<h1 style="margin-bottom: 10px; text-align: center; display: block">Booking Tours</h1>
 <p id="notice"><%= notice %></p>
-
-<h1>Booking Tours</h1>
 
 <table>
   <thead>
@@ -18,7 +22,8 @@
         <td><%= booking_tour.tour_id %></td>
         <td><%= link_to 'Show', booking_tour %></td>
         <td><%= link_to 'Edit', edit_booking_tour_path(booking_tour) %></td>
-        <td><%= link_to 'Destroy', booking_tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', booking_tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= booking_tour.created_at.strftime("%B %d %Y")%></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,3 +32,5 @@
 <br>
 
 <%= link_to 'New Booking Tour', new_booking_tour_path %>
+</div>
+</div>

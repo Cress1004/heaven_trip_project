@@ -15,6 +15,9 @@ class BookingToursController < ApplicationController
   # GET /booking_tours/new
   def new
     @booking_tour = BookingTour.new
+    # if !current_user
+    #   format.html { redirect_to url, notice: 'まず、サインインしてください。' }
+    # end
   end
 
   # GET /booking_tours/1/edit
@@ -25,7 +28,9 @@ class BookingToursController < ApplicationController
   # POST /booking_tours.json
   def create
     @booking_tour = BookingTour.new(booking_tour_params)
+    # need change after
 
+    @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*3 
     respond_to do |format|
       if @booking_tour.save
         format.html { redirect_to @booking_tour, notice: 'Booking tour was successfully created.' }
@@ -40,6 +45,7 @@ class BookingToursController < ApplicationController
   # PATCH/PUT /booking_tours/1
   # PATCH/PUT /booking_tours/1.json
   def update
+        @booking_tour.total_cost = params[:booking_tour][:number_of_people].to_i*3 
     respond_to do |format|
       if @booking_tour.update(booking_tour_params)
         format.html { redirect_to @booking_tour, notice: 'Booking tour was successfully updated.' }
@@ -69,6 +75,6 @@ class BookingToursController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def booking_tour_params
-      params.require(:booking_tour).permit(:user_id, :tour_id)
+      params.require(:booking_tour).permit(:user_id, :tour_id, :number_of_people, :vehicle)
     end
 end

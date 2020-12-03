@@ -1,6 +1,11 @@
+<div class="section__container">
+      <h1 class="homepage__hero">Welcome to heaven trip</h1>
+    <p class="homepage__description">You want go to heaven when you die?</p>
+    <p class="homepage__subscription">This is for you! </p>
+  <div class="authen__container">
 <p id="notice"><%= notice %></p>
 
-<h1>Tours</h1>
+<h1 style="margin-bottom: 15px; text-align: center; display: block">Tours</h1>
 
 <table>
   <thead>
@@ -19,13 +24,29 @@
         <td><%= tour.time %></td>
         <td><%= tour.description %></td>
         <td><%= link_to 'Show', tour %></td>
+          
+         <% if user_signed_in? %>
+         <% if current_user.is_admin == false %>
+          <td><%= link_to 'Booking', new_booking_tour_path %></td>
+           <% end %>
+        <% if current_user.is_admin? %>
         <td><%= link_to 'Edit', edit_tour_path(tour) %></td>
         <td><%= link_to 'Destroy', tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if user_signed_in? %>
+<% if current_user.is_admin? %>
 <%= link_to 'New Tour', new_tour_path %>
+
+
+
+<% end %>
+<% end %>
+    </div>
+</div>

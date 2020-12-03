@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_111621) do
+ActiveRecord::Schema.define(version: 2020_12_02_170837) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_12_02_111621) do
     t.integer "tour_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "total_cost"
+    t.integer "number_of_people"
+    t.string "vehicle"
   end
 
   create_table "tour_reviews", force: :cascade do |t|
@@ -54,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_12_02_111621) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "price"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_12_02_111621) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.boolean "is_admin"
+    t.boolean "is_admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
