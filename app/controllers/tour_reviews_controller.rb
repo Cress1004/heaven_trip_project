@@ -1,8 +1,11 @@
 class TourReviewsController < ApplicationController
   before_action :set_tour_review, only: [:show, :edit, :update, :destroy]
-
+ before_action :set_review, only: [:review]
   # GET /tour_reviews
   # GET /tour_reviews.json
+  
+  
+  
   def index
     @tour_reviews = TourReview.all
   end
@@ -10,6 +13,12 @@ class TourReviewsController < ApplicationController
   # GET /tour_reviews/1
   # GET /tour_reviews/1.json
   def show
+    @tour_reviews = TourReview.new
+  end
+
+  def review
+    @tour_reviews = TourReview.new
+    render 'review'
   end
 
   # GET /tour_reviews/new
@@ -28,8 +37,8 @@ class TourReviewsController < ApplicationController
 
     respond_to do |format|
       if @tour_review.save
-        format.html { redirect_to @tour_review, notice: 'ツアーレビューが正常に作成されました。' }
-        format.json { render :show, status: :created, location: @tour_review }
+        format.html { redirect_to tours_url(current_user.id), notice: 'ツアーレビューが正常に作成されました。' }
+        #format.json { render :show, status: :created, location: @tour_review }
       else
         format.html { render :new }
         format.json { render json: @tour_review.errors, status: :unprocessable_entity }
@@ -67,6 +76,9 @@ class TourReviewsController < ApplicationController
       @tour_review = TourReview.find(params[:id])
     end
 
+    def set_review
+      @tour = Tour.find(params[:id])
+    end
     # Only allow a list of trusted parameters through.
     def tour_review_params
       params.require(:tour_review).permit(:user_id, :tour_id, :review)
