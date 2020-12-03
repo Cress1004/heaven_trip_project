@@ -1,0 +1,18 @@
+<h1>プロフィール</h1>
+
+<h3>アバター</h3>
+<div style="widht:200px;height:auto;">
+　<% if current_user.avatar.attached? %>
+    <%= image_tag current_user.avatar, class: "card-img",style:"widht:100%!important" %>
+  <% end %>
+</div>
+
+<h3>名前</h3>
+<%= current_user.name %>
+
+<h3>メールアドレス</h3>
+<%= current_user.email %>
+
+<br>
+<%= link_to "Edit" , edit_user_registration_path, method: :get%>
+<%= link_to "Back", "/" %>

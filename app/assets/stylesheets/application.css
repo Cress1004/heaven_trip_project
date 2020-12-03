@@ -13,3 +13,64 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/*NAVBAR*/
+.app__button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #e2f3f5;
+    border-radius: 10px;
+}
+
+/* LOGIN LOGOUT PAGE */
+.authen__container {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+   -webkit-box-shadow: -1px -2px 22px 2px rgba(0,0,0,0.37); 
+box-shadow: -1px -2px 22px 2px rgba(0,0,0,0.37);
+}
+
+/*HOMEPAGE*/
+.section__container {
+    width: 80%;
+    height: 80vh;
+    background-color: #e2f3f5;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding-top: 70px;
+    align-items: center;
+    background-image: url('../../images/travel.jpg');
+}
+
+.homepage__hero {
+    font-size: 30px;
+}
+
+.homepage__description {
+    margin-top: 10px;
+}
+
+/* TABLE */
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
