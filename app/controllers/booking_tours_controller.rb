@@ -1,7 +1,7 @@
 class BookingToursController < ApplicationController
   before_action :set_booking_tour, only: [:show, :edit, :update, :destroy]
   before_action :set_my_booking, only: [:index]
-
+  before_action :set_book_tour, only: [:book_tour]
   # GET /booking_tours
   # GET /booking_tours.json
   def index
@@ -16,7 +16,11 @@ class BookingToursController < ApplicationController
   # GET /booking_tours/new
   def new
     @booking_tour = BookingTour.new
-
+  end
+  
+  def book_tour
+    @booking_tour = BookingTour.new
+    render 'book_tour'
   end
 
   # GET /booking_tours/1/edit
@@ -78,6 +82,10 @@ class BookingToursController < ApplicationController
 
     def set_my_booking
         @my_bookings = current_user.booking_tour
+    end
+
+    def set_book_tour
+      @tour = Tour.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
