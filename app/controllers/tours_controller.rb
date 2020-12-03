@@ -9,9 +9,7 @@ class ToursController < ApplicationController
 
   # GET /tours/1
   # GET /tours/1.json
-  def show
-  end
-
+ 
   # GET /tours/new
   def new
     @tour = Tour.new
@@ -20,7 +18,9 @@ class ToursController < ApplicationController
   # GET /tours/1/edit
   def edit
   end
-
+  def show 
+    @reviews = @tour.tour_review
+  end
   # POST /tours
   # POST /tours.json
   def create

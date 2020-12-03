@@ -1,5 +1,5 @@
-<%= form_with(model: tour_review, local: true) do |form| %>
-  <% if tour_review.errors.any? %>
+<%= form_with(model: @tour_reviews, local: true) do |form| %>
+  <% if @tour_reviews.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(tour_review.errors.count, "error") %> prohibited this tour_review from being saved:</h2>
 
@@ -10,17 +10,14 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :user_id, 'ユーザー' %>
-    <%= form.number_field :user_id %>
+   <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <div class="field">
-    <%= form.label :tour_id, 'ツアー' %>
-    <%= form.number_field :tour_id %>
+   <div class="field">
+    <%= form.hidden_field :tour_id, value: @tour.id %>
   </div>
-
+  
   <div class="field">
     <%= form.label :review, 'レビュー' %>
     <%= form.text_area :review %>

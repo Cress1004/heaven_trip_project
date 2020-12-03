@@ -28,7 +28,29 @@
   <%= @tour.price %> VND
 </p>
 
-<%= link_to 'Edit', edit_tour_path(@tour) %> |
-<%= link_to 'Back', tours_path %>
+<p>
+   <% if @tour.image.attached? %>
+     <%= image_tag @tour.image %>
+   <% end %>
+ </p>
+ 
+ 
+ <%= link_to 'New Review', review_path_url(@tour.id) %>
+  <%= link_to 'Edit', edit_tour_path(@tour) %> |
+  <%= link_to 'Back', tours_path %>
+ </br>
+ </br>
+ <p><em>ALL REVIEWS</em></p>
+  <table>
+    <th>User name</th>
+    <th>Comment</th>
+  <% @reviews.each do |review| %>
+      <% @user = User.find(review.user_id)%>
+      <tr>
+        <td><%= link_to @user.name, users_show_path(@user) %></td>
+        <td><%= review.review%></td>
+      </tr>
+  <% end %>
+      </table>
 </div>
 </div>
